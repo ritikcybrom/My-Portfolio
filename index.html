@@ -115,6 +115,70 @@ nav {
 
 .nav-links a:hover { color: var(--text); background: var(--card); }
 
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-mobile-panel {
+  position: fixed;
+  top: 68px;
+  left: 0; right: 0;
+  background: rgba(6,11,24,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 5% 20px;
+  gap: 2px;
+  transform: translateY(-12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 999;
+}
+
+.nav-mobile-panel.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nav-mobile-panel a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-mobile-panel a:last-child { border-bottom: none; }
+.nav-mobile-panel a:active { color: var(--text); }
+
 .nav-cta {
   background: var(--accent);
   color: #fff;
@@ -1364,6 +1428,7 @@ footer {
     padding: 0 16px;
   }
   .nav-links { display: none; }
+  .nav-toggle { display: flex; }
   .nav-logo { font-size: 16px; }
   .nav-cta { padding: 8px 14px; font-size: 12.5px; }
 
@@ -1482,12 +1547,21 @@ footer {
 
 @media (max-width: 480px) {
   /* Extra Small Devices */
-  .hero-title { font-size: 28px; }
-  .hero-badge { font-size: 11px; padding: 4px 10px; }
+  .nav-logo { font-size: 14.5px; gap: 7px; }
+  .nav-cta { display: none; }
+  #hero { padding: 88px 16px 40px !important; }
+  .hero-title { font-size: 26px; }
+  .hero-title .line3 { font-size: 0.65em; }
+  .hero-badge { font-size: 10.5px; padding: 4px 10px; gap: 6px; }
+  .hero-desc { font-size: 14.5px; }
+  .hero-ctas { gap: 10px; }
   .hero-stats {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
   }
+  .h-stat-val { font-size: 22px; }
+  .section-title { font-size: 24px !important; }
+  .section-sub { font-size: 14px !important; }
   .gallery-grid {
     grid-template-columns: 1fr !important;
   }
@@ -1498,10 +1572,36 @@ footer {
     grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
+  .cs-name { font-size: 18px !important; }
+  .cs-roas-badge { font-size: 17px !important; }
+  .snap-val { font-size: 28px !important; }
+  .testi-card { padding: 20px !important; }
+  .testi-text { font-size: 13.5px !important; }
+  .contact-channel { flex-wrap: wrap; }
+  .cc-arrow { display: none; }
+  .resume-card h3 { font-size: 22px; }
+  .resume-btns a { width: 100%; justify-content: center; }
   .btn-primary, .btn-secondary, .btn-ghost {
     width: 100%;
     justify-content: center;
   }
+}
+
+@media (max-width: 360px) {
+  /* Very small phones (e.g. older/smaller Android) */
+  nav { padding: 0 12px; height: 60px; }
+  .nav-mobile-panel { top: 60px; }
+  #hero { padding: 80px 12px 32px !important; }
+  section { padding: 48px 12px !important; }
+  .hero-title { font-size: 22px; }
+  .hero-badge { font-size: 10px; padding: 4px 8px; }
+  .h-stat-val { font-size: 19px; }
+  .h-stat-label { font-size: 10.5px; }
+  .section-title { font-size: 21px !important; }
+  .snap-card, .skill-card { padding: 16px !important; }
+  .snap-val { font-size: 24px !important; }
+  .cs-metric { padding: 10px !important; }
+  .cs-metric-val { font-size: 15px !important; }
 }
 
 /* ── SCROLLBAR ── */
@@ -1531,7 +1631,19 @@ footer {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="mailto:ritikchouhan30393@gmail.com">Hire Me</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile-panel" id="navMobilePanel">
+  <a href="#about">About</a>
+  <a href="#snapshot">Results</a>
+  <a href="#casestudies">Case Studies</a>
+  <a href="#dashboard">Dashboard</a>
+  <a href="#skills">Skills</a>
+  <a href="#contact">Contact</a>
+  <a href="mailto:ritikchouhan30393@gmail.com" style="color:var(--accent2);font-weight:700">Hire Me →</a>
+</div>
 
 
 <!-- ═══ HERO ═══ -->
@@ -2596,6 +2708,24 @@ window.addEventListener('load', () => {
     });
   });
 });
+
+// ── MOBILE NAV TOGGLE ──
+const navToggle = document.getElementById('navToggle');
+const navMobilePanel = document.getElementById('navMobilePanel');
+
+function closeMobileNav() {
+  navToggle.classList.remove('open');
+  navMobilePanel.classList.remove('open');
+  navToggle.setAttribute('aria-expanded', 'false');
+}
+
+navToggle.addEventListener('click', () => {
+  const isOpen = navMobilePanel.classList.toggle('open');
+  navToggle.classList.toggle('open', isOpen);
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
+
+navMobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileNav));
 
 // ── NAV scroll effect ──
 window.addEventListener('scroll', () => {
