@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritik Chouhan — Performance Marketing Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #060B18;
+  --bg2: #0D1526;
+  --bg3: #111C30;
+  --card: #0E1A2E;
+  --card2: #132035;
+  --border: rgba(99,160,255,0.12);
+  --border2: rgba(99,160,255,0.22);
+  --accent: #3B82F6;
+  --accent2: #60A5FA;
+  --gold: #F59E0B;
+  --gold2: #FCD34D;
+  --green: #10B981;
+  --green2: #34D399;
+  --pink: #EC4899;
+  --pink2: #F472B6;
+  --purple: #8B5CF6;
+  --text: #F1F5FF;
+  --text2: #94A3B8;
+  --text3: #64748B;
+  --glass: rgba(14,26,46,0.7);
+  --r: 12px;
+  --r2: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NOISE TEXTURE overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(6,11,24,0.8);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--accent); }
+  50% { box-shadow: 0 0 20px var(--accent), 0 0 40px var(--accent); }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); background: var(--card); }
+
+.nav-cta {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+/* ── SECTIONS ── */
+section { position: relative; z-index: 1; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 5% 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(59,130,246,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(139,92,246,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.25);
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 28px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hero-badge .live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse-green 1.5s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(42px, 5vw, 66px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.hero-title .line1 { color: var(--text); display: block; }
+.hero-title .line2 {
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+.hero-title .line3 { color: var(--text2); font-size: 0.72em; font-weight: 400; display: block; margin-top: 8px; }
+
+.hero-desc {
+  font-size: 16.5px;
+  color: var(--text2);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 40px;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-primary:hover { background: #2563EB; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59,130,246,0.35); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border2);
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-secondary:hover { background: var(--card); border-color: var(--accent); transform: translateY(-2px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border);
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--card); }
+
+.hero-stats {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.h-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.h-stat-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.h-stat-label {
+  font-size: 12px;
+  color: var(--text3);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Hero right — animated card stack */
+.hero-right {
+  position: relative;
+  height: 520px;
+}
+
+.metric-float {
+  position: absolute;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 20px 24px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.metric-float:nth-child(2) { animation-delay: -2s; }
+.metric-float:nth-child(3) { animation-delay: -4s; }
+.metric-float:nth-child(4) { animation-delay: -1s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.mf-1 { top: 20px; left: 0; width: 240px; }
+.mf-2 { top: 140px; right: 0; width: 210px; }
+.mf-3 { bottom: 160px; left: 20px; width: 220px; }
+.mf-4 { bottom: 40px; right: 10px; width: 200px; }
+
+.mf-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 8px;
+}
+
+.mf-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.mf-sub {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+.mf-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: rgba(16,185,129,0.12);
+  color: var(--green2);
+  border-radius: 100px;
+  padding: 3px 9px;
+  margin-top: 6px;
+}
+
+/* central dashboard card */
+.hero-dash {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  padding: 24px;
+  z-index: 2;
+}
+
+.dash-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 16px;
+}
+
+.dash-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.dash-bar-label { color: var(--text2); width: 65px; flex-shrink: 0; }
+
+.dash-bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.dash-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1.5s ease;
+}
+
+.dash-bar-val { color: var(--text); font-weight: 600; width: 40px; text-align: right; flex-shrink: 0; }
+
+/* ── ABOUT ── */
+#about {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent2);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--text2);
+  max-width: 600px;
+  margin-bottom: 60px;
+  line-height: 1.7;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text p {
+  font-size: 15.5px;
+  color: var(--text2);
+  line-height: 1.82;
+  margin-bottom: 20px;
+}
+
+.about-text p strong { color: var(--text); font-weight: 600; }
+
+.about-industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0;
+}
+
+.ind-tag {
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  color: var(--accent2);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tl-item {
+  display: flex;
+  gap: 18px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 16px;
+}
+
+.tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg2);
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-item.active .tl-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.15);
+}
+
+.tl-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+.tl-item:last-child .tl-line { display: none; }
+
+.tl-year {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+
+.tl-role {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.tl-company {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+/* ── PERFORMANCE SNAPSHOT ── */
+#snapshot {
+  padding: 110px 5%;
+}
+
+.snap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.snap-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.snap-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.snap-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.snap-card:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+.snap-card:nth-child(3)::before { background: linear-gradient(90deg, var(--green), var(--green2)); }
+.snap-card:nth-child(4)::before { background: linear-gradient(90deg, var(--pink), var(--pink2)); }
+.snap-card:nth-child(5)::before { background: linear-gradient(90deg, var(--purple), #A78BFA); }
+.snap-card:nth-child(6)::before { background: linear-gradient(90deg, #06B6D4, #67E8F9); }
+
+.snap-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+}
+
+.snap-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.snap-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.snap-label {
+  font-size: 13px;
+  color: var(--text3);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 16px;
+}
+
+.snap-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.snap-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  animation: growBar 2s ease forwards;
+}
+
+@keyframes growBar { from { width: 0 } }
+
+/* ── CASE STUDIES ── */
+#casestudies {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cs-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  overflow: hidden;
+  transition: all 0.35s;
+  position: relative;
+}
+
+.cs-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.35);
+}
+
+.cs-card-header {
+  padding: 28px 28px 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.cs-sector-badge {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 100px;
+  padding: 5px 12px;
+}
+
+.cs-roas-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.roas-label { font-size: 11px; color: var(--text3); font-family: 'Inter', sans-serif; font-weight: 500; }
+
+.cs-body { padding: 0 28px; }
+
+.cs-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.cs-tagline {
+  font-size: 13.5px;
+  color: var(--text2);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.cs-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cs-metric {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.cs-metric-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.cs-metric-label {
+  font-size: 10.5px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.cs-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 -28px 24px;
+}
+
+.cs-strategy {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.cs-footer {
+  padding: 20px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.cs-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.cs-btn-primary:hover { background: #2563EB; transform: translateY(-1px); }
+
+.cs-btn-outline {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+}
+
+.cs-btn-outline:hover { background: var(--card2); color: var(--text); border-color: var(--accent); }
+
+/* ── GALLERY ── */
+#gallery {
+  padding: 110px 5%;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gal-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  aspect-ratio: 16/10;
+}
+
+.gal-item:hover {
+  border-color: var(--border2);
+  transform: scale(1.02);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+.gal-item:hover .gal-overlay { opacity: 1; }
+
+.gal-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  position: relative;
+}
+
+.gal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6,11,24,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gal-overlay-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  color: #fff;
+}
+
+.gal-overlay-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text2);
+}
+
+.gal-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 12px 14px;
+  background: linear-gradient(0deg, rgba(6,11,24,0.95), transparent);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.gal-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: rgba(59,130,246,0.15);
+  color: var(--accent2);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-bottom: 4px;
+}
+
+/* ── DASHBOARD ── */
+#dashboard {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px;
+}
+
+.chart-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.chart-card-sub {
+  font-size: 12.5px;
+  color: var(--text3);
+  margin-bottom: 24px;
+}
+
+.mini-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.mini-stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.25s;
+}
+
+.mini-stat:hover { border-color: var(--border2); transform: translateX(4px); }
+
+.mini-stat-left {}
+.mini-stat-label { font-size: 12px; color: var(--text3); font-weight: 500; margin-bottom: 6px; }
+.mini-stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; }
+
+.mini-bar-col {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 36px;
+}
+
+.mini-bar {
+  width: 6px;
+  border-radius: 3px;
+  transition: height 0.5s ease;
+}
+
+/* ── SKILLS ── */
+#skills {
+  padding: 110px 5%;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.skill-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 28px 24px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skill-card:hover { transform: translateY(-4px); border-color: var(--border2); }
+.skill-card:hover::after { opacity: 1; }
+
+.skill-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.skill-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.skill-level-text {
+  font-size: 11.5px;
+  color: var(--text3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+  animation: growBar 2s ease forwards;
+}
+
+.cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 700;
+  background: rgba(16,185,129,0.1);
+  color: var(--green2);
+  border-radius: 100px;
+  padding: 3px 10px;
+  margin-top: 4px;
+}
+
+/* ── TESTIMONIALS ── */
+#testimonials {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.testi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.testi-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border2);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.3);
+}
+
+.testi-quote {
+  font-size: 28px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 18px;
+  font-family: Georgia, serif;
+}
+
+.testi-text {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.78;
+  margin-bottom: 28px;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testi-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.testi-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.testi-role {
+  font-size: 12px;
+  color: var(--text3);
+}
+
+.testi-stars {
+  color: var(--gold);
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+/* ── RESUME ── */
+#resume {
+  padding: 110px 5%;
+}
+
+.resume-center {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.resume-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  padding: 56px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 48px;
+}
+
+.resume-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59,130,246,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.resume-card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.resume-card p {
+  color: var(--text2);
+  font-size: 15px;
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.resume-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── CONTACT ── */
+#contact {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.contact-channels {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-channel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.contact-channel:hover {
+  border-color: var(--border2);
+  transform: translateX(6px);
+  box-shadow: 4px 0 24px rgba(59,130,246,0.1);
+}
+
+.cc-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.cc-label { font-size: 13px; color: var(--text3); font-weight: 500; }
+.cc-value { font-size: 15px; font-weight: 600; color: var(--text); }
+
+.cc-arrow { margin-left: auto; color: var(--text3); font-size: 18px; transition: transform 0.2s; }
+.contact-channel:hover .cc-arrow { transform: translateX(4px); color: var(--accent2); }
+
+/* contact form */
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+
+.form-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.form-input, .form-textarea {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  padding: 13px 16px;
+  outline: none;
+  transition: all 0.2s;
+  resize: vertical;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.form-textarea { min-height: 110px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 40px 5%;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: var(--text3);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--text3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--text2); }
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+.fade-up-delay-4 { transition-delay: 0.4s; }
+.fade-up-delay-5 { transition-delay: 0.5s; }
+
+/* ── COUNTER ANIMATION ── */
+.count-up { display: inline-block; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .hero-right { height: 300px; }
+  .snap-grid, .cs-grid, .skills-grid, .testi-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .dash-layout { grid-template-columns: 1fr; }
+  .hero-title { font-size: 36px; }
+  .mf-1, .mf-2, .mf-3, .mf-4 { display: none; }
+  .hero-dash { position: relative; transform: none; top: auto; left: auto; width: 100%; }
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--card); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--card2); }
+
+/* ── SECTION WRAPPER ── */
+.section-inner { max-width: 1200px; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <a class="nav-logo" href="#hero">
+    <span class="dot"></span>
+    Ritik Chouhan
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#snapshot">Results</a></li>
+    <li><a href="#casestudies">Case Studies</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:ritikchouhan30393@gmail.com">Hire Me</a>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid" style="max-width:1300px;margin:0 auto;width:100%;">
+
+    <div class="hero-content fade-up">
+      <div class="hero-badge">
+        <span class="live-dot"></span>
+        Available for new opportunities
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line1">Performance</span>
+        <span class="line2">Marketing Manager</span>
+        <span class="line3">Meta Ads · Google Ads · Growth Strategy</span>
+      </h1>
+
+      <p class="hero-desc">
+        5+ years of turning ad budgets into measurable revenue. Managed <strong style="color:var(--text)">₹2.73 Crore+</strong> in ad spend, generated <strong style="color:var(--text)">₹8.19 Crore+ revenue</strong>, and maintained a consistent <strong style="color:var(--text)">3X+ ROAS</strong> across Healthcare, Education, Fitness, FMCG, and more.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#casestudies" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
+          View Case Studies
+        </a>
+        <a href="https://www.linkedin.com/in/ritik-chouhan" target="_blank" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7M17 10v4a3 3 0 0 1-6 0"/></svg>
+          LinkedIn Profile
+        </a>
+        <a href="mailto:ritikchouhan30393@gmail.com" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Schedule a Call
+        </a>
+        <a href="https://wa.me/916261624206" target="_blank" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="h-stat">
+          <span class="h-stat-val" data-target="273">₹0</span>
+          <span class="h-stat-label">Lakh Ad Spend</span>
+        </div>
+        <div class="h-stat" style="border-left:1px solid var(--border);padding-left:36px">
+          <span class="h-stat-val" data-target="819">₹0</span>
+          <span class="h-stat-label">Lakh Revenue</span>
+        </div>
+        <div class="h-stat" style="border-left:1px solid var(--border);padding-left:36px">
+          <span class="h-stat-val" data-target="206633" data-suffix="">0</span>
+          <span class="h-stat-label">Leads Generated</span>
+        </div>
+        <div class="h-stat" style="border-left:1px solid var(--border);padding-left:36px">
+          <span class="h-stat-val">3X+</span>
+          <span class="h-stat-label">Average ROAS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating cards -->
+    <div class="hero-right fade-up fade-up-delay-2">
+
+      <div class="metric-float mf-1">
+        <div class="mf-label">Monthly Revenue</div>
+        <div class="mf-value" style="color:var(--green2)">₹44 Lakh</div>
+        <div class="mf-sub">May 2026 · ToneOp Fit</div>
+        <div class="mf-trend">↑ 7.3X ROAS</div>
+      </div>
+
+      <div class="metric-float mf-2">
+        <div class="mf-label">Marathon Event ROAS</div>
+        <div class="mf-value" style="color:var(--pink2)">10.3X</div>
+        <div class="mf-sub">₹1.8L Spend → ₹18.6L Revenue</div>
+      </div>
+
+      <div class="metric-float mf-3">
+        <div class="mf-label">Campaign Reach</div>
+        <div class="mf-value" style="color:var(--accent2)">1.76 Cr</div>
+        <div class="mf-sub">FMCG Soya · 4 States</div>
+        <div class="mf-trend">₹3.08 CPM</div>
+      </div>
+
+      <div class="metric-float mf-4">
+        <div class="mf-label">BGI Hackathon CPL</div>
+        <div class="mf-value" style="color:var(--gold2)">₹16.09</div>
+        <div class="mf-sub">1,347 leads · ₹28K spend</div>
+      </div>
+
+      <div class="hero-dash">
+        <div class="dash-title">Campaign Performance Overview</div>
+        <div class="dash-bars">
+          <div class="dash-bar-row">
+            <div class="dash-bar-label">ToneOp Fit</div>
+            <div class="dash-bar-track">
+              <div class="dash-bar-fill" style="width:92%;background:linear-gradient(90deg,var(--green),var(--green2))"></div>
+            </div>
+            <div class="dash-bar-val">3.2X</div>
+          </div>
+          <div class="dash-bar-row">
+            <div class="dash-bar-label">Marathon</div>
+            <div class="dash-bar-track">
+              <div class="dash-bar-fill" style="width:100%;background:linear-gradient(90deg,var(--pink),var(--pink2))"></div>
+            </div>
+            <div class="dash-bar-val">10.3X</div>
+          </div>
+          <div class="dash-bar-row">
+            <div class="dash-bar-label">Hospital</div>
+            <div class="dash-bar-track">
+              <div class="dash-bar-fill" style="width:74%;background:linear-gradient(90deg,#F97316,#FCA5A5)"></div>
+            </div>
+            <div class="dash-bar-val">₹25.88</div>
+          </div>
+          <div class="dash-bar-row">
+            <div class="dash-bar-label">BGI College</div>
+            <div class="dash-bar-track">
+              <div class="dash-bar-fill" style="width:62%;background:linear-gradient(90deg,var(--purple),#A78BFA)"></div>
+            </div>
+            <div class="dash-bar-val">₹32.57</div>
+          </div>
+          <div class="dash-bar-row">
+            <div class="dash-bar-label">FMCG</div>
+            <div class="dash-bar-track">
+              <div class="dash-bar-fill" style="width:55%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div>
+            </div>
+            <div class="dash-bar-val">₹3.08</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">About Me</div>
+    <h2 class="section-title">The performance marketer<br>who makes numbers move</h2>
+    <p class="section-sub">5+ years growing revenue across 10+ brands simultaneously, from healthcare chains to fitness apps to industrial steel companies.</p>
+
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Performance Marketing Manager</strong> at Bansal Group Pvt. Ltd., where I oversee paid media for 10+ brands across diverse sectors. My work sits at the intersection of creative strategy and data science — building campaigns that don't just reach people, but convert them into paying customers.</p>
+
+        <p>My approach is built on <strong>attribution clarity</strong>, <strong>funnel ownership</strong>, and relentless optimization. I don't manage campaigns; I engineer revenue systems. Every ₹1 spent is tracked, every audience is tested, and every funnel stage has a hypothesis behind it.</p>
+
+        <p>Before Bansal Group, I worked with AISECT India, Toprankers, OptSEO, and Madbox — building the kind of cross-industry instinct that lets me cut CPL for a hospital the same week I'm scaling ROAS for a fitness platform.</p>
+
+        <div class="about-industries">
+          <span class="ind-tag">Healthcare</span>
+          <span class="ind-tag">Education</span>
+          <span class="ind-tag">Fitness & Wellness</span>
+          <span class="ind-tag">FMCG</span>
+          <span class="ind-tag">B2B Industrial</span>
+          <span class="ind-tag">Events</span>
+          <span class="ind-tag">Real Estate</span>
+          <span class="ind-tag">News Media</span>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+          <a href="https://www.linkedin.com/in/ritik-chouhan" target="_blank" class="btn-secondary" style="padding:10px 20px;font-size:13.5px">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7M17 10v4a3 3 0 0 1-6 0"/></svg>
+            View LinkedIn
+          </a>
+          <a href="http://www.ritikchouhan.com" target="_blank" class="btn-ghost" style="padding:10px 20px;font-size:13.5px">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Visit Website
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11.5px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:24px">Experience Timeline</div>
+        <div class="timeline">
+          <div class="tl-item active">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-year">Aug 2025 – Present</div>
+              <div class="tl-role">Performance Marketing Manager</div>
+              <div class="tl-company">Bansal Group Pvt. Ltd. · Bhopal</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-year">2023 – 2024</div>
+              <div class="tl-role">Sr. Performance Marketing Specialist</div>
+              <div class="tl-company">AISECT India Pvt. Ltd.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-year">2022 – 2023</div>
+              <div class="tl-role">Performance Marketing Executive</div>
+              <div class="tl-company">Toprankers Pvt. Ltd.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-year">2021 – 2022</div>
+              <div class="tl-role">Digital Marketing Manager</div>
+              <div class="tl-company">OptSEO Digital Labs Pvt. Ltd.</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-year">2020 – 2021</div>
+              <div class="tl-role">SEO Executive</div>
+              <div class="tl-company">Madbox Media Studio Pvt. Ltd.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ PERFORMANCE SNAPSHOT ═══ -->
+<section id="snapshot">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Performance Snapshot</div>
+    <h2 class="section-title">Numbers that define the work</h2>
+    <p class="section-sub">Verified metrics from live campaigns managed across Bansal Group's portfolio brands.</p>
+
+    <div class="snap-grid">
+      <div class="snap-card fade-up">
+        <div class="snap-icon" style="background:rgba(59,130,246,0.1);color:var(--accent)">💰</div>
+        <div class="snap-val" style="color:var(--accent)">₹2.73 Cr+</div>
+        <div class="snap-label">Total Ad Spend Managed</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:91%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div>
+      </div>
+      <div class="snap-card fade-up fade-up-delay-1">
+        <div class="snap-icon" style="background:rgba(245,158,11,0.1);color:var(--gold)">📈</div>
+        <div class="snap-val" style="color:var(--gold)">₹8.19 Cr+</div>
+        <div class="snap-label">Revenue Generated</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:100%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div>
+      </div>
+      <div class="snap-card fade-up fade-up-delay-2">
+        <div class="snap-icon" style="background:rgba(16,185,129,0.1);color:var(--green)">🎯</div>
+        <div class="snap-val" style="color:var(--green)">3X+ ROAS</div>
+        <div class="snap-label">Average Return on Ad Spend</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:75%;background:linear-gradient(90deg,var(--green),var(--green2))"></div></div>
+      </div>
+      <div class="snap-card fade-up fade-up-delay-1">
+        <div class="snap-icon" style="background:rgba(236,72,153,0.1);color:var(--pink)">📊</div>
+        <div class="snap-val" style="color:var(--pink)">2,06,633</div>
+        <div class="snap-label">Total Leads Generated</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:88%;background:linear-gradient(90deg,var(--pink),var(--pink2))"></div></div>
+      </div>
+      <div class="snap-card fade-up fade-up-delay-2">
+        <div class="snap-icon" style="background:rgba(139,92,246,0.1);color:var(--purple)">🚀</div>
+        <div class="snap-val" style="color:var(--purple)">50+</div>
+        <div class="snap-label">Active Campaigns Managed</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:67%;background:linear-gradient(90deg,var(--purple),#A78BFA)"></div></div>
+      </div>
+      <div class="snap-card fade-up fade-up-delay-3">
+        <div class="snap-icon" style="background:rgba(6,182,212,0.1);color:#67E8F9">🏢</div>
+        <div class="snap-val" style="color:#67E8F9">10+</div>
+        <div class="snap-label">Brands Managed Simultaneously</div>
+        <div class="snap-bar"><div class="snap-bar-fill" style="width:56%;background:linear-gradient(90deg,#06B6D4,#67E8F9)"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CASE STUDIES ═══ -->
+<section id="casestudies">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Case Studies</div>
+    <h2 class="section-title">Campaign outcomes, in full detail</h2>
+    <p class="section-sub">Every campaign told as a story: the objective, the strategy, the execution, and the verified results.</p>
+
+    <div class="cs-grid">
+
+      <!-- ToneOp -->
+      <div class="cs-card fade-up">
+        <div class="cs-card-header">
+          <span class="cs-sector-badge" style="background:rgba(16,185,129,0.1);color:var(--green2);border:1px solid rgba(16,185,129,0.2)">Fitness & Wellness</span>
+          <div class="cs-roas-badge"><span style="color:var(--green)">3.2X</span><span class="roas-label">ROAS</span></div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-name">ToneOp Fit — Revenue Growth Engine</div>
+          <div class="cs-tagline">18-month performance marketing program generating ₹2.56 Crore+ revenue and 2,06,633 leads across Meta, Google & CRM channels.</div>
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--green)">₹2.56Cr</div>
+              <div class="cs-metric-label">Revenue</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--accent2)">2,06,633</div>
+              <div class="cs-metric-label">Leads</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--gold)">24,633</div>
+              <div class="cs-metric-label">Orders</div>
+            </div>
+          </div>
+          <div class="cs-divider"></div>
+          <div class="cs-strategy"><strong style="color:var(--text2)">Strategy:</strong> Multi-channel attribution model combining Meta lead forms, Google Search, CRM retargeting, and upsell sequences. Power Detox Plan identified as hero SKU (14,787 leads). Scaled that product's ad spend 3× while reducing overall CPL by 40% through audience lookalike refinement and ad creative rotation.</div>
+        </div>
+        <div class="cs-footer">
+          <a href="https://drive.google.com/drive/folders/your-toneop-folder" target="_blank" class="cs-btn cs-btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-6.59"/></svg>
+            View Full Report
+          </a>
+          <a href="https://docs.google.com/spreadsheets/your-dashboard" target="_blank" class="cs-btn cs-btn-outline">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            Open Dashboard
+          </a>
+          <a href="#gallery" class="cs-btn cs-btn-outline">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Screenshots
+          </a>
+        </div>
+      </div>
+
+      <!-- Marathon -->
+      <div class="cs-card fade-up fade-up-delay-1">
+        <div class="cs-card-header">
+          <span class="cs-sector-badge" style="background:rgba(236,72,153,0.1);color:var(--pink2);border:1px solid rgba(236,72,153,0.2)">Event Marketing</span>
+          <div class="cs-roas-badge"><span style="color:var(--pink)">10.3X</span><span class="roas-label">ROAS</span></div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-name">Bansal Pankh Marathon 2026</div>
+          <div class="cs-tagline">Bhopal's largest community marathon — 6,940 registrations, ₹18.62L revenue from ₹1.80L Meta spend in under 90 days.</div>
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--pink)">6,940</div>
+              <div class="cs-metric-label">Registrations</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--gold)">₹18.62L</div>
+              <div class="cs-metric-label">Revenue</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--green)">₹1.80L</div>
+              <div class="cs-metric-label">Ad Spend</div>
+            </div>
+          </div>
+          <div class="cs-divider"></div>
+          <div class="cs-strategy"><strong style="color:var(--text2)">Strategy:</strong> Multi-tier registration funnel targeting 3 user types: individual runners, gift purchasers, and corporate groups. Ran separate ad sets for each category with custom creatives. Retargeted website visitors with urgency-based dynamic ads in final 2 weeks, driving 47% of total registrations in the last sprint.</div>
+        </div>
+        <div class="cs-footer">
+          <a href="https://drive.google.com/drive/folders/your-marathon-folder" target="_blank" class="cs-btn cs-btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-6.59"/></svg>
+            View Full Report
+          </a>
+          <a href="https://docs.google.com/spreadsheets/your-marathon-dashboard" target="_blank" class="cs-btn cs-btn-outline">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>
+            Open Dashboard
+          </a>
+        </div>
+      </div>
+
+      <!-- Bansal Hospital -->
+      <div class="cs-card fade-up fade-up-delay-2">
+        <div class="cs-card-header">
+          <span class="cs-sector-badge" style="background:rgba(239,68,68,0.1);color:#FCA5A5;border:1px solid rgba(239,68,68,0.2)">Healthcare</span>
+          <div class="cs-roas-badge"><span style="color:#F87171">₹25.88</span><span class="roas-label">CPR</span></div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-name">Bansal Hospital — Multi-Specialty Call Ads</div>
+          <div class="cs-tagline">Driving direct patient calls across 12 departments in Bhopal and Sagar through hyper-targeted call ad campaigns with department-specific segmentation.</div>
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:#F87171">7,674+</div>
+              <div class="cs-metric-label">Calls</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--accent2)">₹3.16L</div>
+              <div class="cs-metric-label">Total Spend</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--gold)">20.2L+</div>
+              <div class="cs-metric-label">Impressions</div>
+            </div>
+          </div>
+          <div class="cs-divider"></div>
+          <div class="cs-strategy"><strong style="color:var(--text2)">Strategy:</strong> Built 12 parallel ad sets — one per specialty department — allowing per-department budget optimization. Dental drove highest volume (164 calls). Identified Nephrology and ENT as highest-intent callers via call duration analysis and reallocated 20% budget from lower-intent departments mid-flight.</div>
+        </div>
+        <div class="cs-footer">
+          <a href="https://drive.google.com/drive/folders/your-hospital-folder" target="_blank" class="cs-btn cs-btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-6.59"/></svg>
+            View Full Report
+          </a>
+          <a href="#gallery" class="cs-btn cs-btn-outline">Screenshots</a>
+        </div>
+      </div>
+
+      <!-- BGI College -->
+      <div class="cs-card fade-up fade-up-delay-3">
+        <div class="cs-card-header">
+          <span class="cs-sector-badge" style="background:rgba(139,92,246,0.1);color:#A78BFA;border:1px solid rgba(139,92,246,0.2)">Education</span>
+          <div class="cs-roas-badge"><span style="color:var(--purple)">₹32.57</span><span class="roas-label">Best CPL</span></div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-name">BGI College — Admission Lead Campaigns</div>
+          <div class="cs-tagline">BTech, BBA, MBA admission lead generation across Bhopal and Indore with 34 simultaneous ad sets, 3.52 Crore impressions, 55.9L+ reach.</div>
+          <div class="cs-metrics">
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--purple)">5,000+</div>
+              <div class="cs-metric-label">Calls Placed</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--accent2)">3.52Cr</div>
+              <div class="cs-metric-label">Impressions</div>
+            </div>
+            <div class="cs-metric">
+              <div class="cs-metric-val" style="color:var(--gold)">₹8.03L</div>
+              <div class="cs-metric-label">Spent</div>
+            </div>
+          </div>
+          <div class="cs-divider"></div>
+          <div class="cs-strategy"><strong style="color:var(--text2)">Strategy:</strong> Ran course-specific call ad campaigns (BTech, BBA, MBA) with separate geographic targeting for Bhopal vs Indore. Tested 3 bidding strategies — cost cap, bid cap, and lowest cost — with cost cap winning for volume at ₹32.57 CPL. Scaled BTECH-ABO to 1,455 calls as the top-performing campaign.</div>
+        </div>
+        <div class="cs-footer">
+          <a href="https://drive.google.com/drive/folders/your-bgi-folder" target="_blank" class="cs-btn cs-btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.08-6.59"/></svg>
+            View Full Report
+          </a>
+          <a href="https://drive.google.com/drive/folders/your-bgi-screenshots" target="_blank" class="cs-btn cs-btn-outline">Screenshots</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Additional smaller case studies row -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;max-width:1200px;margin-left:auto;margin-right:auto;">
+
+      <div class="snap-card fade-up" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <span style="font-size:11px;font-weight:700;color:var(--gold2);text-transform:uppercase;letter-spacing:.07em;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:100px;padding:4px 10px">FMCG</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--gold)">1.76Cr Reach</span>
+        </div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Soya Awareness — Pan India</div>
+        <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:16px">4 state-targeted campaigns (WB, JH, Bihar, UP) at ₹1K/day each. Best CPM ₹3.08 across Tier 2-3 markets.</div>
+        <a href="https://drive.google.com/drive/folders/your-fmcg-folder" target="_blank" class="cs-btn cs-btn-outline" style="font-size:11.5px">View Report →</a>
+      </div>
+
+      <div class="snap-card fade-up fade-up-delay-1" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <span style="font-size:11px;font-weight:700;color:#FCA5A5;text-transform:uppercase;letter-spacing:.07em;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:100px;padding:4px 10px">B2B Industrial</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#F97316">₹27.95 CPR</span>
+        </div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">Bansal TMT — Steel Lead Gen</div>
+        <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:16px">2,045 qualified B2B calls from builders and dealers at ₹27.95/call. ₹57K spend, 21L+ impressions.</div>
+        <a href="https://drive.google.com/drive/folders/your-tmt-folder" target="_blank" class="cs-btn cs-btn-outline" style="font-size:11.5px">View Report →</a>
+      </div>
+
+      <div class="snap-card fade-up fade-up-delay-2" style="padding:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <span style="font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.07em;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:100px;padding:4px 10px">Education</span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--accent)">₹16.09 CPL</span>
+        </div>
+        <div style="font-size:15px;font-weight:600;margin-bottom:6px">BGI Hackathon Lead Gen</div>
+        <div style="font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:16px">952 form leads at ₹16.09 + 395 website leads at ₹32.55. Total 1,347 leads from ₹28K spend.</div>
+        <a href="https://drive.google.com/drive/folders/your-hackathon-folder" target="_blank" class="cs-btn cs-btn-outline" style="font-size:11.5px">View Report →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Campaign Gallery</div>
+    <h2 class="section-title">Proof of performance</h2>
+    <p class="section-sub">Meta Ads reports, Google Analytics dashboards, campaign screenshots, and analytics proofs. Click any card to open the full report.</p>
+
+    <div class="gallery-grid">
+
+      <a href="https://drive.google.com/drive/folders/your-toneop-reports" target="_blank" class="gal-item fade-up">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#0D2A1A,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--green2)">₹2.56Cr</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Revenue Dashboard</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Meta Ads</div>
+          <div>ToneOp Revenue Report — Jan–Jun 2026</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/your-marathon-reports" target="_blank" class="gal-item fade-up fade-up-delay-1">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#200D20,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:48px;font-weight:700;color:var(--pink2)">10.3X</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Marathon ROAS</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Power BI</div>
+          <div>Bansal Pankh Marathon Dashboard</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/your-hospital-reports" target="_blank" class="gal-item fade-up fade-up-delay-2">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#1A0A0A,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:#F87171">7,674</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Patient Calls</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Meta Ads</div>
+          <div>Bansal Hospital — Multi-Dept Campaigns</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/your-bgi-reports" target="_blank" class="gal-item fade-up">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#0D0A20,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:#A78BFA">3.52Cr</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Impressions</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Meta Ads</div>
+          <div>BGI College — 34 Campaign Ad Sets</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/your-fmcg-reports" target="_blank" class="gal-item fade-up fade-up-delay-1">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#1A0E00,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--gold2)">1.76Cr</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Pan India Reach</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Meta Ads</div>
+          <div>FMCG Soya Awareness — 4 States</div>
+        </div>
+      </a>
+
+      <a href="https://drive.google.com/drive/folders/your-hackathon-reports" target="_blank" class="gal-item fade-up fade-up-delay-2">
+        <div class="gal-preview" style="background:linear-gradient(135deg,#001828,#0D1526)">
+          <div style="text-align:center">
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--accent2)">1,347</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:4px">Total Leads</div>
+          </div>
+        </div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+          <div class="gal-overlay-text">Open in Google Drive</div>
+        </div>
+        <div class="gal-label">
+          <div class="gal-tag">Meta Ads</div>
+          <div>BGI Hackathon — Lead Gen Campaign</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="text-align:center;margin-top:36px">
+      <a href="https://drive.google.com/drive/folders/your-main-portfolio-folder" target="_blank" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View All Reports on Google Drive
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ INTERACTIVE DASHBOARD ═══ -->
+<section id="dashboard">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Interactive Dashboard</div>
+    <h2 class="section-title">Live performance metrics</h2>
+    <p class="section-sub">Interactive charts showing ROAS, revenue growth, and lead generation trends across all managed accounts.</p>
+
+    <div class="dash-layout">
+      <div>
+        <div class="chart-card" style="margin-bottom:20px">
+          <div class="chart-card-title">Monthly Revenue — ToneOp Fit</div>
+          <div class="chart-card-sub">Jan 2025 – Jun 2026 · Revenue in Lakhs</div>
+          <canvas id="revenueChart" height="220"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">ROAS by Campaign</div>
+          <div class="chart-card-sub">Return on ad spend across all active campaigns</div>
+          <canvas id="roasChart" height="180"></canvas>
+        </div>
+      </div>
+      <div class="mini-chart-grid">
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">Avg CPL — Education</div>
+            <div class="mini-stat-val" style="color:var(--purple)">₹38.57</div>
+          </div>
+          <div class="mini-bar-col" id="bars-1"></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">Avg CPR — Healthcare</div>
+            <div class="mini-stat-val" style="color:#F87171">₹25.88</div>
+          </div>
+          <div class="mini-bar-col" id="bars-2"></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">FMCG CPM</div>
+            <div class="mini-stat-val" style="color:var(--gold)">₹3.08</div>
+          </div>
+          <div class="mini-bar-col" id="bars-3"></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">Hackathon CPL</div>
+            <div class="mini-stat-val" style="color:var(--accent2)">₹16.09</div>
+          </div>
+          <div class="mini-bar-col" id="bars-4"></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">Marathon ROAS</div>
+            <div class="mini-stat-val" style="color:var(--pink2)">10.3X</div>
+          </div>
+          <div class="mini-bar-col" id="bars-5"></div>
+        </div>
+        <div class="mini-stat">
+          <div class="mini-stat-left">
+            <div class="mini-stat-label">Best Month ROAS</div>
+            <div class="mini-stat-val" style="color:var(--green2)">7.3X</div>
+          </div>
+          <div class="mini-bar-col" id="bars-6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Skills & Certifications</div>
+    <h2 class="section-title">Tools of the trade</h2>
+    <p class="section-sub">Platforms, frameworks, and methodologies that drive the results above.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card" style="--accent-clr:var(--accent)">
+        <div class="skill-icon-wrap" style="background:rgba(59,130,246,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9v6M12 9v6M15 9v6"/></svg>
+        </div>
+        <div class="skill-name">Meta Ads Manager</div>
+        <div class="skill-level-text">Expert</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:96%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div>
+        <div class="cert-badge">✓ Certified</div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(245,158,11,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16v.01"/></svg>
+        </div>
+        <div class="skill-name">Google Ads</div>
+        <div class="skill-level-text">Expert</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:91%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div>
+        <div class="cert-badge">✓ Display Certified</div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(16,185,129,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="skill-name">Google Analytics 4</div>
+        <div class="skill-level-text">Advanced</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:88%;background:linear-gradient(90deg,var(--green),var(--green2))"></div></div>
+        <div class="cert-badge">✓ GA4 Certified</div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(139,92,246,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M4 3h16a2 2 0 0 1 2 2v6a10 10 0 0 1-10 10A10 10 0 0 1 2 11V5a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <div class="skill-name">Google Tag Manager</div>
+        <div class="skill-level-text">Advanced</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;background:linear-gradient(90deg,var(--purple),#A78BFA)"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(6,182,212,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#67E8F9" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="skill-name">CRO & Landing Pages</div>
+        <div class="skill-level-text">Advanced</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:82%;background:linear-gradient(90deg,#06B6D4,#67E8F9)"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(236,72,153,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--pink)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="skill-name">LeadSquared CRM</div>
+        <div class="skill-level-text">Advanced</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:79%;background:linear-gradient(90deg,var(--pink),var(--pink2))"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(245,158,11,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="skill-name">SEO & SEM</div>
+        <div class="skill-level-text">Proficient</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:78%;background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon-wrap" style="background:rgba(59,130,246,0.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="skill-name">Marketing Automation</div>
+        <div class="skill-level-text">Proficient</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Testimonials</div>
+    <h2 class="section-title">What clients say</h2>
+    <p class="section-sub">Feedback from founders, marketing heads, and business owners across Bansal Group's portfolio.</p>
+
+    <div class="testi-grid">
+
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Ritik transformed our hospital's digital presence. From zero structured campaigns to 7,000+ patient calls per month — the ROI on our ad spend became measurable and predictable for the first time. His department-level targeting strategy was genuinely innovative.</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(239,68,68,0.15);color:#F87171">BH</div>
+          <div>
+            <div class="testi-name">Marketing Head</div>
+            <div class="testi-role">Bansal Hospital, Bhopal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up fade-up-delay-1">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <div class="testi-text">The marathon campaign was beyond expectations. We targeted ₹10L in ticket revenue and ended up with ₹18.62L. Ritik's multi-tier registration funnel and last-week urgency strategy made the difference. The 10.3X ROAS spoke for itself.</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(236,72,153,0.15);color:var(--pink2)">BP</div>
+          <div>
+            <div class="testi-name">Event Coordinator</div>
+            <div class="testi-role">Bansal Pankh Foundation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up fade-up-delay-2">
+        <div class="testi-stars">★★★★★</div>
+        <div class="testi-quote">"</div>
+        <div class="testi-text">Running 34 ad sets across two cities for our BTech, BBA, MBA programs simultaneously — and keeping CPL under ₹35 — isn't easy. Ritik's systematic approach to bid strategy testing saved us lakhs in wasted spend every semester.</div>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:rgba(139,92,246,0.15);color:#A78BFA">BG</div>
+          <div>
+            <div class="testi-name">Director of Admissions</div>
+            <div class="testi-role">BGI College, Bhopal & Indore</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ RESUME ═══ -->
+<section id="resume">
+  <div class="resume-center fade-up">
+    <div class="section-eyebrow" style="justify-content:center">Resume & Profile</div>
+    <h2 class="section-title" style="text-align:center">Download the full picture</h2>
+
+    <div class="resume-card">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(59,130,246,0.12);border:2px solid rgba(59,130,246,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px">
+        👤
+      </div>
+      <h3>Ritik Chouhan</h3>
+      <p style="margin-bottom:6px;font-size:14px;color:var(--accent2);font-weight:600">Performance Marketing Manager · 5+ Years</p>
+      <p>Bhopal, Madhya Pradesh · ritikchouhan30393@gmail.com · +91 6261624206</p>
+
+      <div class="resume-btns">
+        <a href="https://drive.google.com/file/your-resume-link" target="_blank" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume (PDF)
+        </a>
+        <a href="https://www.linkedin.com/in/ritik-chouhan" target="_blank" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7M17 10v4a3 3 0 0 1-6 0"/></svg>
+          View LinkedIn Profile
+        </a>
+        <a href="http://www.ritikchouhan.com" target="_blank" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/></svg>
+          Visit Website
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact">
+  <div class="section-inner fade-up">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="section-title">Let's work together</h2>
+    <p class="section-sub">Open to new opportunities, consulting engagements, and freelance performance marketing projects.</p>
+
+    <div class="contact-grid">
+      <div>
+        <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:32px">Whether you're a founder who needs their first paid channel scaled, an agency looking for a specialist, or a brand that wants to move from vanity metrics to verified revenue — I'd love to connect.</p>
+
+        <div class="contact-channels">
+
+          <a href="https://wa.me/916261624206" target="_blank" class="contact-channel">
+            <div class="cc-icon" style="background:rgba(16,185,129,0.12)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            </div>
+            <div>
+              <div class="cc-label">WhatsApp (fastest response)</div>
+              <div class="cc-value">+91 6261624206</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+
+          <a href="mailto:ritikchouhan30393@gmail.com" class="contact-channel">
+            <div class="cc-icon" style="background:rgba(59,130,246,0.12)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="cc-label">Email</div>
+              <div class="cc-value">ritikchouhan30393@gmail.com</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/ritik-chouhan" target="_blank" class="contact-channel">
+            <div class="cc-icon" style="background:rgba(59,130,246,0.12)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent2)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7M17 10v4a3 3 0 0 1-6 0"/></svg>
+            </div>
+            <div>
+              <div class="cc-label">LinkedIn</div>
+              <div class="cc-value">linkedin.com/in/ritik-chouhan</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+
+          <a href="https://calendly.com/ritikchouhan" target="_blank" class="contact-channel">
+            <div class="cc-icon" style="background:rgba(245,158,11,0.12)">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="cc-label">Schedule a call (Calendly)</div>
+              <div class="cc-value">Book a 30-min consultation</div>
+            </div>
+            <div class="cc-arrow">→</div>
+          </a>
+
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size:11.5px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px">Send a Quick Message</div>
+        <form class="contact-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="e.g. Priya Sharma" id="formName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="you@company.com" id="formEmail">
+          </div>
+          <div class="form-group">
+            <label class="form-label">What are you looking for?</label>
+            <textarea class="form-textarea" placeholder="e.g. I need help scaling our Meta Ads campaigns for a D2C brand..." id="formMsg"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:14px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <div id="formSuccess" style="display:none;padding:12px 16px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:10px;font-size:13.5px;color:var(--green2);text-align:center">
+            ✓ Message sent! Redirecting to email...
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-left">
+    <a class="nav-logo" href="#hero" style="gap:8px">
+      <span class="dot" style="width:6px;height:6px"></span>
+      Ritik Chouhan
+    </a>
+    <span class="footer-copy">© 2026 · Performance Marketing Manager</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/ritik-chouhan" target="_blank">LinkedIn</a>
+    <a href="http://www.ritikchouhan.com" target="_blank">Website</a>
+    <a href="mailto:ritikchouhan30393@gmail.com">Email</a>
+    <a href="https://wa.me/916261624206" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+
+<script>
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// ── COUNTER ANIMATION ──
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '';
+  const prefix = el.textContent.charAt(0) === '₹' ? '₹' : '';
+  const duration = 2000;
+  const start = Date.now();
+  const update = () => {
+    const elapsed = Date.now() - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(eased * target);
+    el.textContent = prefix + current.toLocaleString('en-IN') + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  update();
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.target.dataset.target) {
+      animateCounter(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+// ── CHARTS ──
+window.addEventListener('load', () => {
+  const chartDefaults = {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#64748B', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#64748B', font: { size: 11 } } }
+    }
+  };
+
+  // Revenue chart
+  const revCtx = document.getElementById('revenueChart');
+  if (revCtx) {
+    new Chart(revCtx, {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'],
+        datasets: [{
+          data: [8.2,9.1,10.5,11.8,14.2,13.6,15.1,16.4,18.2,19.8,21.3,20.1,22.4,24.1,26.8,28.3,44.0,38.2],
+          borderColor: '#10B981',
+          backgroundColor: 'rgba(16,185,129,0.08)',
+          borderWidth: 2.5,
+          pointRadius: 3,
+          pointBackgroundColor: '#10B981',
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, tooltip: { callbacks: { label: (c) => '₹' + c.parsed.y + 'L' } } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: (v) => '₹' + v + 'L' } } } }
+    });
+  }
+
+  // ROAS chart
+  const roasCtx = document.getElementById('roasChart');
+  if (roasCtx) {
+    new Chart(roasCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Marathon', 'ToneOp May', 'ToneOp Avg', 'BGI Hackathon', 'BGI College', 'TMT', 'Hospital'],
+        datasets: [{
+          data: [10.3, 7.3, 3.2, 1.75, 1.2, 0.9, 0.8],
+          backgroundColor: ['rgba(236,72,153,0.7)','rgba(16,185,129,0.7)','rgba(16,185,129,0.5)','rgba(59,130,246,0.7)','rgba(139,92,246,0.7)','rgba(245,158,11,0.7)','rgba(239,68,68,0.7)'],
+          borderColor: ['#EC4899','#10B981','#10B981','#3B82F6','#8B5CF6','#F59E0B','#EF4444'],
+          borderWidth: 1.5,
+          borderRadius: 6
+        }]
+      },
+      options: { ...chartDefaults, plugins: { ...chartDefaults.plugins, tooltip: { callbacks: { label: (c) => c.parsed.y + 'X ROAS' } } }, scales: { ...chartDefaults.scales, y: { ...chartDefaults.scales.y, ticks: { ...chartDefaults.scales.y.ticks, callback: (v) => v + 'X' } } } }
+    });
+  }
+
+  // Mini sparkline bars
+  const sparkData = [
+    { id: 'bars-1', vals: [45,42,41,38,40,39,38,38,38], color: '#A78BFA' },
+    { id: 'bars-2', vals: [32,30,28,27,26,26,25,26,25], color: '#F87171' },
+    { id: 'bars-3', vals: [4.2,3.9,3.6,3.4,3.2,3.1,3.0,3.1,3.08], color: '#FCD34D' },
+    { id: 'bars-4', vals: [22,20,19,18,17,17,16,16,16], color: '#60A5FA' },
+    { id: 'bars-5', vals: [6,7,8,8.5,9,9.5,10,10.2,10.3], color: '#F472B6' },
+    { id: 'bars-6', vals: [3.5,4.2,5.1,5.8,6.2,6.8,7.1,7.3,7.3], color: '#34D399' },
+  ];
+
+  sparkData.forEach(({ id, vals, color }) => {
+    const container = document.getElementById(id);
+    if (!container) return;
+    const max = Math.max(...vals);
+    vals.forEach(v => {
+      const bar = document.createElement('div');
+      bar.className = 'mini-bar';
+      const h = Math.max(4, Math.round((v / max) * 36));
+      bar.style.cssText = `height:${h}px;background:${color};opacity:${0.4 + (v/max)*0.6}`;
+      container.appendChild(bar);
+    });
+  });
+});
+
+// ── NAV scroll effect ──
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(6,11,24,0.95)';
+  } else {
+    nav.style.background = 'rgba(6,11,24,0.8)';
+  }
+});
+
+// ── FORM SUBMIT ──
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('formName').value;
+  const email = document.getElementById('formEmail').value;
+  const msg = document.getElementById('formMsg').value;
+  const success = document.getElementById('formSuccess');
+  success.style.display = 'block';
+  setTimeout(() => {
+    window.location.href = `mailto:ritikchouhan30393@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(msg + '\n\nFrom: ' + name + ' (' + email + ')')}`;
+  }, 1200);
+}
+</script>
+
+</body>
+</html>
